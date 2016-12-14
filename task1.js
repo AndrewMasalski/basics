@@ -1,3 +1,6 @@
+// решить квадратное уровнение
+
+
 var alert = console.log;
 
 function discr(p1, p2, p3) {
