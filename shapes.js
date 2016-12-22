@@ -40,8 +40,8 @@ Square.prototype.getSize = function() {
 
 /**
  * Класс для прямоугольника
- * @param edgeSize1 первая сторона квадрата
- * @param edgeSize2 вторая сторона квадрата
+ * @param edgeSize1 первая сторона прямоугольника
+ * @param edgeSize2 вторая сторона прямоугольника
  * @constructor
  */
 function Rectangle(edgeSize1, edgeSize2) {
