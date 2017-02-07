@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="Phone">
+
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+<div class="container" ng-controller="PhoneCtrl">
+    <div class="jumbotron" style="margin-top: 40px">
+        <form novalidate class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="name">Name:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="name" placeholder="Enter Contact Name" ng-model="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="phone">Phone Number:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" ng-model="phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="email">E-Mail:</label>
+                <div class="col-lg-10">
+                    <input type="email" class="form-control" id="email" placeholder="E-Mail" ng-model="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="group" class="control-label col-lg-2">Group:</label>
+                <div class="col-lg-10">
+                    <select name="group" id="group" class="form-control" ng-model="selectedOption" ng-options="group for                                    group in groups">
+                    </select>
+                </div>
+            </div>
+
+            <div novalidate class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <!--<button type="submit" class="btn btn-default" ng-click="add()">Add Contact</button>-->
+                    <h3>Angular Modal Service</h3>
+                    <a class="btn btn-default" href ng-click="show(e)">Show a Modal</a>
+                    <p>{{message}}</p>
+
+                    <!-- The actual modal template, just a bit o bootstrap -->
+                    <script type="text/ng-template" id="modal.html">
+                        <div class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Yes or No?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>It's your call...</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
+                                        <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!--An form part-->
+
+    <div class="jumbotron ">
+        <table class="table table-striped ">
+            <thead>
+            <tr>
+                <th class="col-lg-1">ID</th>
+                <th class="col-lg-3">Name</th>
+                <th class="col-lg-3">Phone Number</th>
+                <th class="col-lg-2">E-Mail</th>
+                <th class="col-lg-2.5">Group</th>
+                <th class="col-lg-1">Edit/Delete</th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="text" class="form-control ">
+                </th>
+                <th>
+                    <input type="text" class="form-control ">
+                </th>
+                <th>
+                    <input type="text" class="form-control ">
+                </th>
+                <th>
+                    <input type="text" class="form-control ">
+                </th>
+                <th>
+                    <select name="" id="" class="form-control">
+
+                    </select>
+                </th>
+                <th></th>
+            </tr>
+
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="contact in contacts">
+                <td>{{contact.id}}</td>
+                <td>{{contact.name}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.group}}</td>
+                <td>
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn btn-info btn-md">Edit</button>
+                        <button type="button" class="btn btn-danger btn-md">Delete</button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!--An table part-->
+
+</div>
+
+</body>
+
+</html>
