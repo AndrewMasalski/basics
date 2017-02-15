@@ -1,17 +1,18 @@
 angular
     .module('Phone', ['angularModalService', 'ngAnimate'])
-    .controller('ModalController', function($scope, close) {
-
+    .controller('ModalController', function($scope, close, name, phone) {
+        $scope.name = name;
+        $scope.phone = phone;
         $scope.close = function(result) {
             close(result, 500); // close, but give 500ms for bootstrap to animate
         };
-
     })
     .controller('PhoneCtrl', function($scope, ModalService) {
         $scope.show = function() {
             ModalService.showModal({
                 templateUrl: 'modal.html',
-                controller: "ModalController"
+                controller: "ModalController",
+                inputs: {name: $scope.name, phone: $scope.phone}
             }).then(function(modal) {
                 modal.element.modal();
                 modal.close.then(function(result) {
