@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Phone">
+<html lang="en" >
 
 <head>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
@@ -11,75 +11,65 @@
     <script src="app.js"></script>
 </head>
 
-<body>
-<div class="container" ng-controller="PhoneCtrl">
+<body >
+<div class="container" ng-app="Phone" ng-controller="PhoneCtrl">
     <div class="jumbotron" style="margin-top: 40px">
-        <form novalidate class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="name">Name:</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="name" placeholder="Enter Contact Name" ng-model="name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="phone">Phone Number:</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" ng-model="phone">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="email">E-Mail:</label>
-                <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" placeholder="E-Mail" ng-model="email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="group" class="control-label col-lg-2">Group:</label>
-                <div class="col-lg-10">
-                    <select name="group" id="group" class="form-control" ng-model="selectedOption" ng-options="group for                                    group in groups">
-                    </select>
-                </div>
+        <form ng-submit="show()" class="form-horizontal" name="userForm" novalidate>
+            <!-- NAME -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" ng-model="name" required>
+                <p ng-show="userForm.name.$invalid && !userForm.name.$pristine && userForm.$submitted" class="help-block">You name is required.</p>
             </div>
 
-            <div novalidate class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <!--<button type="submit" class="btn btn-default" ng-click="add()">Add Contact</button>-->
-                    <h3>Angular Modal Service</h3>
-                    <a class="btn btn-default" href ng-click="show(e)">Show a Modal</a>
-                    <p>{{message}}</p>
-
-                    <!-- The actual modal template, just a bit o bootstrap -->
-                    <script type="text/ng-template" id="modal.html">
-                        <div class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Yes or No?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Name: {{name}}</p>
-                                        <p>Phone: {{phone}}</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
-                                        <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </script>
-
-                </div>
+            <!-- Phone -->
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" class="form-control" ng-model="phone">
             </div>
 
+            <!-- EMAIL -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" ng-model="email" required>
+                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+            </div>
+            <div class="form-group">
+                <label>Group:</label>
+                <select name="group" id="group" class="form-control" ng-model="selectedOption" ng-options="group for group in groups"></select>
+            </div>
+
+            <button class="btn btn-primary btn-lg" type="submit" style="width: 200px">Add</button>
         </form>
-    </div>
-    <!--An form part-->
+    </div> <!--An form part-->
+
+    <!-- The actual modal template, just a bit o bootstrap -->
+    <script type="text/ng-template" id="modal.html" >
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add a new contact in PhoneBook?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Name: {{name}}</p>
+                        <p>Phone: {{phone}}</p>
+                        <p>E-Mail: {{email}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
 
     <div class="jumbotron ">
         <table class="table table-striped ">
-            <thead>
+            <thead >
             <tr>
                 <th class="col-lg-1">ID</th>
                 <th class="col-lg-3">Name</th>
@@ -90,19 +80,13 @@
             </tr>
             <tr>
                 <th>
-                    <input type="text" class="form-control ">
+                    <input type="text" class="form-control " >
                 </th>
+                <th><input type="text" class="form-control " ></th>
+                <th><input type="text" class="form-control " ></th>
+                <th><input type="text" class="form-control " ></th>
                 <th>
-                    <input type="text" class="form-control ">
-                </th>
-                <th>
-                    <input type="text" class="form-control ">
-                </th>
-                <th>
-                    <input type="text" class="form-control ">
-                </th>
-                <th>
-                    <select name="" id="" class="form-control">
+                    <select name="" id="" class="form-control"  >
 
                     </select>
                 </th>
@@ -118,7 +102,7 @@
                 <td>{{contact.phone}}</td>
                 <td>{{contact.email}}</td>
                 <td>{{contact.group}}</td>
-                <td>
+                <td >
                     <div class="btn-group-vertical">
                         <button type="button" class="btn btn-info btn-md">Edit</button>
                         <button type="button" class="btn btn-danger btn-md">Delete</button>
@@ -128,11 +112,9 @@
 
             </tbody>
         </table>
-    </div>
-    <!--An table part-->
+    </div> <!--An table part-->
 
 </div>
 
 </body>
-
 </html>
