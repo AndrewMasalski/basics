@@ -2,97 +2,67 @@
 <html lang="en" >
 
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <title>Phone book</title>
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="../node_modules/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="app.js"></script>
 </head>
 
-<body>
-
-<!--An form part-->
-
-<div class="container" ng-app="Phone" ng-controller="PhoneController">
-    <div class="jumbotron" style="margin-top: 40px">
-        <form novalidate class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="name">Name:</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="name" placeholder="Enter Contact Name" ng-model="name">
-                </div>
-            </div>
-            <!--Phone-->
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="phone">Phone Number:</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" ng-model="phone">
-                </div>
-            </div>
-            <!--E-Mail-->
-            <div class="form-group">
-                <label class="control-label col-lg-2" for="email">E-Mail:</label>
-                <div class="col-lg-10">
-                    <input type="email"   class="form-control" id="email" placeholder="E-Mail" ng-model="email">
-                </div>
-            </div>
-            <!--Group:-->
-            <div class="form-group">
-                <label for="group" class="control-label col-lg-2">Group:</label>
-                <div class="col-lg-10">
-                    <select name="group" id="group" class="form-control" ng-model="selectedOption" ng-options="group for group in groups"></select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a class="btn btn-info btn-lg" href ng-click="add()" style="width: 200px">Add</a>
-
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#text"><span class="glyphicon glyphicon-search"></span></button>
-                    <div id="text" class="collapse">
-                        <input type="text" class="form-control" placeholder="By NaMe" >
-                        <input type="text" class="form-control" placeholder="By PhOnE" >
-                        <select name="searchGroup" id="searchGroup" class="form-control" ng-model="searchGroup" ng-options="group for group in groups"></select>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!--Table part-->
-
+<body >
+<div class="container" ng-app="PhoneBook" ng-controller="PhoneBookCtrl">
     <div class="jumbotron ">
+        <button class="btn btn-primary btn-lg" ng-click="create()" style="width: 200px">Create</button>
         <table class="table table-striped ">
-            <thead>
+            <thead >
             <tr>
-                <th class="col-lg-1"><a href="#" ng-click="sortBy('id')">ID</a></th>
-                <th class="col-lg-3"><a href="#" ng-click="sortBy('name')">Name</a></th>
-                <th class="col-lg-2"><a href="#" ng-click="sortBy('phone')">Phone Number</a></th>
-                <th class="col-lg-2"><a href="#" ng-click="sortBy('email')">E-Mail</a></th>
-                <th class="col-lg-2"><a href="#" ng-click="sortBy('group')">Group</a></th>
+                <th class="col-lg-1">ID</th>
+                <th class="col-lg-3">Name</th>
+                <th class="col-lg-3">Phone Number</th>
+                <th class="col-lg-2">E-Mail</th>
+                <th class="col-lg-1">Group</th>
                 <th class="col-lg-2">Edit/Delete</th>
             </tr>
+            <tr>
+                <th>
+                    <input type="text" class="form-control" >
+                </th>
+                <th><input type="text" class="form-control" ></th>
+                <th><input type="text" class="form-control" ></th>
+                <th><input type="text" class="form-control" ></th>
+                <th>
+                    <select name="" id="" class="form-control"  >
+
+                    </select>
+                </th>
+                <th></th>
+            </tr>
+
+
             </thead>
             <tbody>
-            <tr ng-repeat="contact in contacts | orderBy:propertyName">
-                <td>{{contact.id }}</td>
-                <td>{{contact.name }}</td>
+            <tr ng-repeat="contact in contacts">
+                <td>{{contact.id}}</td>
+                <td>{{contact.name}}</td>
                 <td>{{contact.phone}}</td>
                 <td>{{contact.email}}</td>
                 <td>{{contact.group}}</td>
-                <td>
+                <td >
                     <div class="btn-group-horizontal">
                         <button type="button" class="btn btn-info btn-md" ng-click="edit(contact)"><span class="glyphicon glyphicon-pencil"></span></button>
                         <button type="button" class="btn btn-danger btn-md" ng-click="delete(contact)"><span class="glyphicon glyphicon-remove"></span></button>
                     </div>
                 </td>
             </tr>
+
             </tbody>
         </table>
     </div>
+
 </div>
 
 </body>
