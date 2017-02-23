@@ -2,9 +2,9 @@
   "name": "basics",
   "version": "1.0.0",
   "description": "",
-  "main": "figure.js",
+  "main": "",
   "scripts": {
-    "start": "http-server"
+    "start": "cd server && node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
     "angular-animate": "^1.4.8",
     "angular-local-storage": "^0.5.2",
     "angular-modal-service": "^0.10.1",
+    "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
+    "colors": "^1.1.2",
+    "express": "^4.14.1",
     "jquery": "^3.1.1"
   }
 }
