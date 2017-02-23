@@ -28,13 +28,8 @@ function getContactById(id) {
     return contact;
 }
 
-router.route('/')
-    .get(function(req, res) {
-        res.send({contacts: 'http://localhost:3003/api/contacts'});
-    });
-
 router.route('/contacts')
-// get all contacts
+    // get all contacts
     .get(function(req, res) {
         try {
             var data = getDataFromFile();
@@ -78,7 +73,7 @@ router.route('/contacts')
     });
 
 router.route('/contacts/:id')
-    // get contact by id
+// get contact by id
     .get(function(req, res) {
         try {
             var contact = getContactById(req.params.id);
