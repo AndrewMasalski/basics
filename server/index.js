@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var colors = require('colors');
-var api = require('./contacts');
+var api = require('./api/contacts');
 var app = express();
 
 var port = 3003;
