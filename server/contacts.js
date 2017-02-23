@@ -59,8 +59,7 @@ router.route('/contacts')
         try {
             var data = getDataFromFile();
             var contactFromRequest = req.body;
-            var id = contactFromRequest.id;
-            var contact = getContactById(id);
+            var contact = getContactById(contactFromRequest.id);
             contact.name = contactFromRequest.name;
             contact.phone = contactFromRequest.phone;
             contact.email = contactFromRequest.email;
