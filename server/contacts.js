@@ -72,7 +72,7 @@ router.route('/contacts')
     });
 
 router.route('/contacts/:id')
-// get contact by id
+    // get contact by id
     .get(function(req, res) {
         try {
             var contact = getContactById(req.params.id);
