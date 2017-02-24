@@ -6,7 +6,7 @@ app.get('/', function (req, res) {
 });
 
 app.listen(3003, function() {
-    console.log('phone book server started: http://localhost/api');
+    console.log('phone book server started: http://localhost:3003');
 });
 
 
